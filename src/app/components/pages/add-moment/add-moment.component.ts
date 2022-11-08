@@ -22,6 +22,7 @@ export class AddMomentComponent implements OnInit {
         Validators.minLength(5),
       ]),
       status: new FormControl('', [Validators.required]),
+      tags: new FormControl('', [Validators.required]),
     });
   }
 
@@ -35,6 +36,10 @@ export class AddMomentComponent implements OnInit {
 
   get status() {
     return this.momentForm.get('status');
+  }
+
+  get tags() {
+    return this.momentForm.get('tags');
   }
 
   submit() {
@@ -55,6 +60,9 @@ export class AddMomentComponent implements OnInit {
         required: 'The description is mandatory',
         maxlength: `The min value is ${error?.maxlength?.requiredLength}`,
         minlength: `The min value is ${error?.minlength?.requiredLength}`,
+      },
+      tags: {
+        required: 'the Tags are mandatory',
       },
     };
 

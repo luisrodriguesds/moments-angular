@@ -10,6 +10,17 @@
     [hasError]="title.invalid && formDir.submitted"
     [errorMessage]="parseError('title', title.errors)"
   ></app-input>
+  <app-checkbox
+    label="Pick some thags"
+    [required]="true"
+    [control]="$any(tags)"
+    [hasError]="(tags?.invalid || false) && formDir.submitted"
+    [errorMessage]="parseError('tags', tags?.errors)"
+  >
+    <app-checkbox-item [value]="'tag 1'" [label]="'Tag 1'"></app-checkbox-item>
+    <app-checkbox-item [value]="'tag 2'" [label]="'Tag 2'"></app-checkbox-item>
+    <app-checkbox-item [value]="'tag 3'" [label]="'Tag 3'"></app-checkbox-item>
+  </app-checkbox>
   <app-textarea
     label="Description"
     placeholder="Enter description"

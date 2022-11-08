@@ -14,6 +14,8 @@ import { httpInterceptorProviders } from './interceptors/http/http.interceptor';
 import { AddMomentComponent } from './components/pages/add-moment/add-moment.component';
 import { InputComponent } from './components/forms/input/input.component';
 import { TextareaComponent } from './components/forms/textarea/textarea.component';
+import { CheckboxComponent } from './components/forms/checkbox/checkbox.component';
+import { CheckboxItemComponent } from './components/forms/checkbox/checkbox-item/checkbox-item.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { TextareaComponent } from './components/forms/textarea/textarea.componen
     AddMomentComponent,
     InputComponent,
     TextareaComponent,
+    CheckboxComponent,
+    CheckboxItemComponent,
   ],
   imports: [
     BrowserModule,

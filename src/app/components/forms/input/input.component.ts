@@ -1,12 +1,5 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Optional,
-  Output,
-  Self,
-} from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
