@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -12,22 +12,24 @@ export class CheckboxComponent implements OnInit {
   @Input() required: boolean = false;
   @Input() hasError: boolean = false;
   @Input() errorMessage: string = '';
-  value: string[] = [];
   constructor() {}
 
   ngOnInit(): void {}
 
   onChange(value: any) {
-    const findValue = this.value.find((item) => item === value);
-    if (findValue) {
-      const values = this.value.filter((item) => item !== value);
-      this.value = values;
+    if (this.isSelected(value)) {
+      const values = this.control.value.filter(
+        (item: string) => item !== value
+      );
       this.control.setValue(values);
       return;
     }
-    const values = this.value;
+    const values = this.control.value;
     values.push(value);
-    this.value = values;
     this.control.setValue(values);
+  }
+
+  isSelected(checkboxValue: string): boolean {
+    return this.control.value.includes(checkboxValue);
   }
 }

@@ -1,2 +1,8 @@
-<input type="checkbox" [value]="value" (change)="checkbox.onChange(value)" /> {{label}}
+<input
+  type="checkbox"
+  (change)="checkbox.onChange(value)"
+  [value]="value"
+  [checked]="checkbox.isSelected(value)"
+/>
+{{label}}
 

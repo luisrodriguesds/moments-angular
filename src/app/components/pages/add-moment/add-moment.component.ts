@@ -43,6 +43,12 @@ export class AddMomentComponent implements OnInit {
   }
 
   submit() {
+    this.momentForm.setValue({
+      title: 'Test after sub',
+      description: 'Desc after sub',
+      status: 'Status after sub',
+      tags: ['tag 1', 'tag 2'],
+    });
     console.log(this.momentForm.value);
   }
 

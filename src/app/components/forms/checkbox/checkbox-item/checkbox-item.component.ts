@@ -13,8 +13,4 @@ export class CheckboxItemComponent implements OnInit {
   constructor(@Host() public checkbox: CheckboxComponent) {}
 
   ngOnInit(): void {}
-
-  onchange() {
-    console.log('Test');
-  }
 }
