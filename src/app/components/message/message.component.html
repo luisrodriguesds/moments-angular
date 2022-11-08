@@ -1,0 +1,17 @@
+<ng-template [ngIf]="messageService.messageDescription">
+  <div class="message">
+    <div class="message-header">
+      <h2>{{messageService.messageTitle || 'System Message'}}</h2>
+    </div>
+    <div class="message-body">
+      <p>
+        {{messageService.messageDescription}}
+      </p>
+    </div>
+    <div class="message-footer">
+      <button>Close</button>
+    </div>
+  </div>
+  <div class="message-bg">
+  </div>
+</ng-template>

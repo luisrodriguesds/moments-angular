@@ -1,0 +1,25 @@
+<div class="main">
+ <h2>Add a moment</h2>
+ <form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
+  <app-input
+    type="text"
+    label="Title"
+    placeholder="Enter Title"
+    [required]="true"
+    [control]="$any(title)"
+    [hasError]="title.invalid && formDir.submitted"
+    [errorMessage]="parseError('title', title.errors)"
+  ></app-input>
+  <app-textarea
+    label="Description"
+    placeholder="Enter description"
+    [required]="true"
+    [control]="$any(description)"
+    [hasError]="description.invalid && formDir.submitted"
+    [errorMessage]="parseError('description', description.errors)"
+  ></app-textarea>
+  <div class="form-group">
+    <button type="submit">Send</button>
+  </div>
+ </form>
+</div>

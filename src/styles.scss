@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+.main {
+  margin: 20px auto;
+  width: 80%;
+}
+
+body {
+  margin: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.valid-error {
+  margin: 0;
+  color: red;
+}

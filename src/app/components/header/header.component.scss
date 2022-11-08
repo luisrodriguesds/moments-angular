@@ -1,0 +1,14 @@
+.header {
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      & + li {
+        margin-left: 20px;
+      }
+    }
+  }
+}

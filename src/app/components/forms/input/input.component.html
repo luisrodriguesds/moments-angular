@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label for="">{{label}}</label>
+  <input
+    [type]="type"
+    [formControl]="control"
+    [placeholder]="placeholder"
+    [required]="required"
+    [disabled]="disabled"
+  />
+  <div *ngIf="hasError">
+    <p *ngIf="errorMessage" class="valid-error">
+      {{errorMessage}}
+    </p>
+  </div>
+</div>

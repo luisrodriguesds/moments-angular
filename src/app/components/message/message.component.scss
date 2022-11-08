@@ -1,0 +1,35 @@
+.message-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.4;
+}
+.message {
+  position: fixed;
+  background-color: white;
+  width: 50%;
+  top: 20%;
+  margin-left: 50%;
+  left: -25%;
+  z-index: 2;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.message-body {
+  p {
+    font-size: 18px;
+  }
+}
+
+.message-footer {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="header">
+  <div>
+    <h1>Moments</h1>
+    <p>Share your best moments</p>
+  </div>
+  <nav>
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li *ngIf="!isLogged"><a routerLink="/login">Login</a></li>
+      <li *ngIf="isLogged"><a routerLink="/add-moment">Add Moment</a></li>
+      <li *ngIf="isLogged"><a (click)="loginService.signOut()" href="">Logout</a></li>
+    </ul>
+  </nav>
+</div>
