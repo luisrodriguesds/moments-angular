@@ -1,0 +1,7 @@
+<input
+  type="radio"
+  [value]="radio.control.value"
+  [checked]="radio.isSelected(value)"
+  (change)="radio.onChange(value)"
+>
+{{label}}

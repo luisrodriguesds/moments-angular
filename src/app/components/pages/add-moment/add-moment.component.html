@@ -11,7 +11,7 @@
     [errorMessage]="parseError('title', title.errors)"
   ></app-input>
   <app-checkbox
-    label="Pick some thags"
+    label="Pick some tags"
     [required]="true"
     [control]="$any(tags)"
     [hasError]="(tags?.invalid || false) && formDir.submitted"
@@ -21,6 +21,16 @@
     <app-checkbox-item [value]="'tag 2'" [label]="'Tag 2'"></app-checkbox-item>
     <app-checkbox-item [value]="'tag 3'" [label]="'Tag 3'"></app-checkbox-item>
   </app-checkbox>
+  <app-radio
+    label="Status"
+    [required]="true"
+    [control]="$any(status)"
+    [hasError]="(status?.invalid || false) && formDir.submitted"
+    [errorMessage]="parseError('status', status?.errors)"
+  >
+    <app-radio-item [value]="'active'" [label]="'Active'"></app-radio-item>
+    <app-radio-item [value]="'inactive'" [label]="'Inactive'"></app-radio-item>
+  </app-radio>
   <app-textarea
     label="Description"
     placeholder="Enter description"

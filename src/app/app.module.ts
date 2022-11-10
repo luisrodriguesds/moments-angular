@@ -16,6 +16,8 @@ import { InputComponent } from './components/forms/input/input.component';
 import { TextareaComponent } from './components/forms/textarea/textarea.component';
 import { CheckboxComponent } from './components/forms/checkbox/checkbox.component';
 import { CheckboxItemComponent } from './components/forms/checkbox/checkbox-item/checkbox-item.component';
+import { RadioComponent } from './components/forms/radio/radio.component';
+import { RadioItemComponent } from './components/forms/radio/radio-item/radio-item.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { CheckboxItemComponent } from './components/forms/checkbox/checkbox-item
     TextareaComponent,
     CheckboxComponent,
     CheckboxItemComponent,
+    RadioComponent,
+    RadioItemComponent,
   ],
   imports: [
     BrowserModule,

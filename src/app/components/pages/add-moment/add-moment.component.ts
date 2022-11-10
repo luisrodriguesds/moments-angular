@@ -46,7 +46,7 @@ export class AddMomentComponent implements OnInit {
     this.momentForm.setValue({
       title: 'Test after sub',
       description: 'Desc after sub',
-      status: 'Status after sub',
+      status: 'inactive',
       tags: ['tag 1', 'tag 2'],
     });
     console.log(this.momentForm.value);
@@ -71,7 +71,9 @@ export class AddMomentComponent implements OnInit {
         required: 'the Tags are mandatory',
       },
     };
-
+    if (!errorMessages[field] || !errorMessages[field][errorProps]) {
+      return '';
+    }
     return errorMessages[field][errorProps];
   }
 }
