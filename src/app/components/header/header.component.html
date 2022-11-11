@@ -8,7 +8,7 @@
       <li><a routerLink="/">Home</a></li>
       <li *ngIf="!isLogged"><a routerLink="/login">Login</a></li>
       <li *ngIf="isLogged"><a routerLink="/add-moment">Add Moment</a></li>
-      <li *ngIf="isLogged"><a (click)="loginService.signOut()" href="">Logout</a></li>
+      <li *ngIf="isLogged"><button (click)="loginService.signOut()" class="button-link">Logout</button></li>
     </ul>
   </nav>
 </div>

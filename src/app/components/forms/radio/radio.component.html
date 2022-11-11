@@ -1,4 +1,9 @@
 <div class="form-group">
   <label for="">{{label}}</label>
   <ng-content></ng-content>
+  <div *ngIf="hasError">
+    <p *ngIf="errorMessage" class="valid-error">
+      {{errorMessage}}
+    </p>
+  </div>
 </div>

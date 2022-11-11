@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { MessageService } from '../../../services/message/message.service';
+import { MomentsService } from '../../../services/moments/moments.service';
 
 @Component({
   selector: 'app-add-moment',
@@ -8,7 +12,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AddMomentComponent implements OnInit {
   momentForm!: FormGroup;
-  constructor() {}
+  constructor(
+    private momentService: MomentsService,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.momentForm = new FormGroup({
@@ -18,11 +26,12 @@ export class AddMomentComponent implements OnInit {
       ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.maxLength(200),
+        Validators.maxLength(500),
         Validators.minLength(5),
       ]),
       status: new FormControl('', [Validators.required]),
-      tags: new FormControl('', [Validators.required]),
+      term: new FormControl([], [Validators.required, Validators.minLength(2)]),
+      tags: new FormControl([]),
     });
   }
 
@@ -38,18 +47,27 @@ export class AddMomentComponent implements OnInit {
     return this.momentForm.get('status');
   }
 
+  get term() {
+    return this.momentForm.get('term');
+  }
+
   get tags() {
     return this.momentForm.get('tags');
   }
 
-  submit() {
-    this.momentForm.setValue({
-      title: 'Test after sub',
-      description: 'Desc after sub',
-      status: 'inactive',
-      tags: ['tag 1', 'tag 2'],
-    });
-    console.log(this.momentForm.value);
+  async submit() {
+    if (this.momentForm.invalid) {
+      return;
+    }
+    try {
+      await firstValueFrom(this.momentService.post(this.momentForm.value));
+      this.router.navigate(['/']);
+    } catch (error) {
+      this.messageService.add({
+        messageTitle: 'Error',
+        messageDescription: 'Something went wrong',
+      });
+    }
   }
 
   parseError(field: any, error: any) {
@@ -64,11 +82,15 @@ export class AddMomentComponent implements OnInit {
       },
       description: {
         required: 'The description is mandatory',
-        maxlength: `The min value is ${error?.maxlength?.requiredLength}`,
+        maxlength: `The max value is ${error?.maxlength?.requiredLength}`,
         minlength: `The min value is ${error?.minlength?.requiredLength}`,
       },
-      tags: {
-        required: 'the Tags are mandatory',
+      term: {
+        required: 'the Term are mandatory',
+        minlength: `You need check the both options`,
+      },
+      status: {
+        required: 'the status is mandatory',
       },
     };
     if (!errorMessages[field] || !errorMessages[field][errorProps]) {

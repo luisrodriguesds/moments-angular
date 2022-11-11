@@ -18,7 +18,6 @@ export class RadioComponent implements OnInit {
   ngOnInit(): void {}
 
   onChange(value: any) {
-    console.log(value);
     this.control.setValue(value);
   }
 

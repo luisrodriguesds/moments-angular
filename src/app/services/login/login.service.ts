@@ -10,7 +10,7 @@ export interface ILogin {
   email: string;
   password: string;
 }
-interface IUser {
+export interface IUser {
   id: string;
   email: string;
   name: string;
@@ -28,12 +28,14 @@ const USER_KEY = 'moment-auth-user';
   providedIn: 'root',
 })
 export class LoginService {
+  user: IUser | null = null;
   public isUserLogged: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private httpServer: HttpClient, private router: Router) {
     if (!this.isLogged()) {
       return;
     }
+    this.user = this.getUser();
     this.isUserLogged.next(true);
   }
 
@@ -44,12 +46,15 @@ export class LoginService {
   signIn(data: IAuth): void {
     this.saveUser(data.user);
     this.saveToken(data.token);
+    this.user = this.getUser();
     this.isUserLogged.next(true);
   }
 
   signOut(): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.removeItem(USER_KEY);
+    this.isUserLogged.next(false);
+    this.user = null;
     this.router.navigate(['/']);
   }
 

@@ -1,3 +1,26 @@
 <div class="main">
-  <h2>Home aqui</h2>
+  <h2>
+
+    <ng-template [ngIf]="isLogged" [ngIfElse]="welcome">
+      Welcome, {{loginService.user?.name}}!!
+    </ng-template>
+    <ng-template #welcome>
+      Welcome!!
+    </ng-template>
+  </h2>
+
+  <div class="moment-content" *ngIf="!loading; else isLoading">
+    <div class="moment-item" *ngFor="let moment of moments;">
+      <h3>{{moment.title}}</h3>
+      <p>{{moment.description}}</p>
+      <div class="tag-content">
+        <div class="tag-item" *ngFor="let tag of moment.tags">{{tag}}</div>
+      </div>
+    </div>
+  </div>
+  <ng-template #isLoading>
+    <div>
+      <h2>Loading...</h2>
+    </div>
+  </ng-template>
 </div>

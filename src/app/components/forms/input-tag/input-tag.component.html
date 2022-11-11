@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label for="">{{label}}</label>
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    (keypress)="onInsert($event)"
+    [value]="inputValue"
+  >
+  <div class="tags">
+    <div *ngFor="let tag of control.value">
+      {{tag}}
+      <button type="button" (click)="onRemove(tag)">x</button>
+    </div>
+  </div>
+</div>

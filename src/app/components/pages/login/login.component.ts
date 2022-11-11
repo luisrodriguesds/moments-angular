@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
       this.loginService.signIn(res);
       this.router.navigate(['/add-moment']);
     } catch (error) {
+      console.log(error);
       this.messageService.add({
         messageTitle: 'Login Error',
         messageDescription: 'Something went wrong',

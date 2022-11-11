@@ -18,6 +18,8 @@ import { CheckboxComponent } from './components/forms/checkbox/checkbox.componen
 import { CheckboxItemComponent } from './components/forms/checkbox/checkbox-item/checkbox-item.component';
 import { RadioComponent } from './components/forms/radio/radio.component';
 import { RadioItemComponent } from './components/forms/radio/radio-item/radio-item.component';
+import { InputTagComponent } from './components/forms/input-tag/input-tag.component';
+import { LoginService } from './services/login/login.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { RadioItemComponent } from './components/forms/radio/radio-item/radio-it
     CheckboxItemComponent,
     RadioComponent,
     RadioItemComponent,
+    InputTagComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { RadioItemComponent } from './components/forms/radio/radio-item/radio-it
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
