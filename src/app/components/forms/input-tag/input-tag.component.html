@@ -1,11 +1,14 @@
 <div class="form-group">
-  <label for="">{{label}}</label>
-  <input
-    type="text"
-    [placeholder]="placeholder"
-    (keypress)="onInsert($event)"
-    [value]="inputValue"
-  >
+  <mat-form-field>
+    <mat-label>{{label}}</mat-label>
+    <input
+      type="text"
+      matInput
+      [placeholder]="placeholder"
+      (keypress)="onInsert($event)"
+      [value]="inputValue"
+    />
+  </mat-form-field>
   <div class="tags">
     <div *ngFor="let tag of control.value">
       {{tag}}

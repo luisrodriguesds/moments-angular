@@ -52,6 +52,13 @@ server.get("/api/moments", (req, res) => {
   });
 });
 
+server.get("/api/moments/:id", (req, res) => {
+  const moment = moments.find((item) => item.id == req.params.id);
+  return res.json({
+    moment: moment || {},
+  });
+});
+
 server.post("/api/moments", (req, res) => {
   const body = req.body;
   if (body.title === "" || body.description === "") {

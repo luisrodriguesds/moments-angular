@@ -1,5 +1,5 @@
-<div class="main">
- <h2>Add a moment</h2>
+<div class="main" *ngIf="!loading; else loadingForm">
+ <h2>{{isEdit ? 'Edit' : 'Add'}} a moment</h2>
  <form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
   <app-input
     type="text"
@@ -44,3 +44,8 @@
   </div>
  </form>
 </div>
+<ng-template #loadingForm>
+  <div class="main">
+    <h2>Loading ...</h2>
+  </div>
+</ng-template>

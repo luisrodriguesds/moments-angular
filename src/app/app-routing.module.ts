@@ -23,6 +23,12 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthorizationMiddleware],
   },
+  {
+    path: 'edit-moment/:id',
+    component: AddMomentComponent,
+    pathMatch: 'full',
+    canActivate: [AuthorizationMiddleware],
+  },
 ];
 
 @NgModule({

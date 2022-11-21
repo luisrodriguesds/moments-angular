@@ -1,12 +1,16 @@
 <div class="form-group">
-  <label for="">{{label}}</label>
-  <textarea
-    [formControl]="control"
-    [placeholder]="placeholder"
-    [required]="required"
-    [disabled]="disabled"
-  ></textarea>
-  <div *ngIf="hasError">
-    <p *ngIf="errorMessage" class="valid-error">{{errorMessage}}</p>
-  </div>
+  <mat-form-field>
+    <mat-label>{{label}}</mat-label>
+    <textarea
+      matInput
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+    ></textarea>
+    <div *ngIf="hasError">
+      <p *ngIf="errorMessage" class="valid-error">{{errorMessage}}</p>
+    </div>
+  </mat-form-field>
+
 </div>

@@ -1,6 +1,10 @@
 <div class="form-group">
   <label for="">{{label}}</label>
-  <ng-content></ng-content>
+  <div>
+    <mat-radio-group>
+      <ng-content></ng-content>
+    </mat-radio-group>
+  </div>
   <div *ngIf="hasError">
     <p *ngIf="errorMessage" class="valid-error">
       {{errorMessage}}

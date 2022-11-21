@@ -1,5 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  firstValueFrom,
+  map,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { LoginService } from '../../../services/login/login.service';
 import { MessageService } from '../../../services/message/message.service';
 import {
@@ -13,6 +22,7 @@ import {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  search: FormControl = new FormControl('');
   moments: IMoments[] = [];
   isLogged: boolean = false;
   loading: boolean = true;
@@ -28,7 +38,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.search.valueChanges
+      .pipe(
+        map((value) => value.trim()),
+        filter((value) => value.length > 2),
+        debounceTime(200),
+        distinctUntilChanged(),
+        switchMap((value) => this.momentsService.search(value)),
+        tap((value) => (this.moments = value.items))
+      )
+      .subscribe();
+  }
+
+  trackByMomentId(index: number, moment: IMoments) {
+    return moment.id;
+  }
 
   async start() {
     try {

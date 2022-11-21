@@ -1,6 +1,7 @@
 .moment-item {
+  padding-top: 20px;
   h3 {
-    margin-bottom: 0px;
+    margin: 0px;
   }
   p {
     margin: 5px 10px;
@@ -8,6 +9,12 @@
   & + div {
     margin-top: 10px;
     border-top: 2px solid #ccc;
+  }
+
+  .moment-item-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 

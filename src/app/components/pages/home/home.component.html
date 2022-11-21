@@ -1,6 +1,5 @@
 <div class="main">
   <h2>
-
     <ng-template [ngIf]="isLogged" [ngIfElse]="welcome">
       Welcome, {{loginService.user?.name}}!!
     </ng-template>
@@ -8,15 +7,25 @@
       Welcome!!
     </ng-template>
   </h2>
-
-  <div class="moment-content" *ngIf="!loading; else isLoading">
-    <div class="moment-item" *ngFor="let moment of moments;">
-      <h3>{{moment.title}}</h3>
-      <p>{{moment.description}}</p>
-      <div class="tag-content">
-        <div class="tag-item" *ngFor="let tag of moment.tags">{{tag}}</div>
-      </div>
+  <div class="moment-content" *ngIf="!loading && moments.length; else isLoading">
+    <div>
+      <app-input label="Search" [control]="search"></app-input>
     </div>
+    <ng-template [ngIf]="!!moments.length" [ngIfElse]="noneResults">
+      <div class="moment-item" *ngFor="let moment of moments; trackBy: trackByMomentId">
+        <div class="moment-item-title">
+          <h3>{{moment.title}}</h3>
+          <a [routerLink]="'/edit-moment/' + moment.id">Edit</a>
+        </div>
+        <p>{{moment.description}}</p>
+        <div class="tag-content">
+          <div class="tag-item" *ngFor="let tag of moment.tags">{{tag}}</div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #noneResults>
+      <h3>Not found results</h3>
+    </ng-template>
   </div>
   <ng-template #isLoading>
     <div>

@@ -20,7 +20,9 @@ import { RadioComponent } from './components/forms/radio/radio.component';
 import { RadioItemComponent } from './components/forms/radio/radio-item/radio-item.component';
 import { InputTagComponent } from './components/forms/input-tag/input-tag.component';
 import { LoginService } from './services/login/login.service';
-
+import { MatInputModule, MatButtonModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,10 @@ import { LoginService } from './services/login/login.service';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatRadioModule,
   ],
   providers: [httpInterceptorProviders, LoginService],
   bootstrap: [AppComponent],

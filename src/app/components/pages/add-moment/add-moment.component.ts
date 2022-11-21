@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { MessageService } from '../../../services/message/message.service';
 import { MomentsService } from '../../../services/moments/moments.service';
@@ -12,10 +12,13 @@ import { MomentsService } from '../../../services/moments/moments.service';
 })
 export class AddMomentComponent implements OnInit {
   momentForm!: FormGroup;
+  loading: boolean = false;
+  isEdit: boolean = false;
   constructor(
     private momentService: MomentsService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,30 @@ export class AddMomentComponent implements OnInit {
       term: new FormControl([], [Validators.required, Validators.minLength(2)]),
       tags: new FormControl([]),
     });
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.loading = true;
+      this.isEdit = true;
+      this.fillToEdit(id);
+    }
+  }
+
+  async fillToEdit(id: string) {
+    try {
+      const { moment } = await firstValueFrom(this.momentService.getOne(id));
+      this.momentForm.setValue({
+        title: moment.title,
+        description: moment.description,
+        status: moment.status,
+        term: moment.term,
+        tags: moment.tags,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.loading = false;
+    }
   }
 
   get title() {

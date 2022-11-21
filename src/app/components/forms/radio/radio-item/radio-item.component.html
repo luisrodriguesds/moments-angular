@@ -1,7 +1,10 @@
-<input
-  type="radio"
+<div>
+  <mat-radio-button
   [value]="radio.control.value"
   [checked]="radio.isSelected(value)"
   (change)="radio.onChange(value)"
 >
-{{label}}
+  {{label}}
+</mat-radio-button>
+</div>
+

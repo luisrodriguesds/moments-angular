@@ -1,15 +1,19 @@
 <div class="form-group">
-  <label for="">{{label}}</label>
-  <input
-    [type]="type"
-    [formControl]="control"
-    [placeholder]="placeholder"
-    [required]="required"
-    [disabled]="disabled"
-  />
-  <div *ngIf="hasError">
-    <p *ngIf="errorMessage" class="valid-error">
-      {{errorMessage}}
-    </p>
-  </div>
+  <mat-form-field>
+    <mat-label>{{label}}</mat-label>
+    <input
+      matInput
+      [type]="type"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [required]="required"
+      [disabled]="disabled"
+    />
+    <div *ngIf="hasError">
+      <p *ngIf="errorMessage" class="valid-error">
+        {{errorMessage}}
+      </p>
+    </div>
+  </mat-form-field>
 </div>
+
